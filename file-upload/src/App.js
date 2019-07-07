@@ -34,11 +34,12 @@ export default class App extends Component {
       }
     })
     .then(res => {
-      toast.success('upload success');
+      toast.success(`Successfuly uploaded ${res.data.data.length} rows`);
     })
     .catch(err => {
-      toast.error('upload fail');
+      toast.error(`upload fail: ${err}`);
     })
+    //this.fileInput.value = "";
   }
 
   render() {
@@ -48,16 +49,16 @@ export default class App extends Component {
           <div className='offset-md-3 col-md-6'>
             <form onSubmit={this.onClickHandler}>
               <div className="form-group">
-                <ToastContainer position="top-center" />
+                <ToastContainer position="top-center" autoClose={false} />
               </div>
               <div className='form-group files'>
                 <label>Upload Your File</label>
-                <input type='file' name='file' className='form-control' onChange={this.onChangeHandler} />
+                <input type='file' name='file' className='form-control' onChange={this.onChangeHandler} ref={ref=> this.fileInput = ref} />
               </div>
               <div className="form-group">
                 <Progress max="100" color="success" value={this.state.loaded} >{Math.round(this.state.loaded,2) }%</Progress>
               </div>
-              <button className='btn btn-success btn-lg btn-block'>Upload</button>
+              <button disabled={!this.state.selectedFile} className='btn btn-success btn-lg btn-block'>Upload</button>
             </form>
           </div>
         </div>
