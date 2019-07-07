@@ -56,3 +56,8 @@ code {
   text-transform: capitalize;
   text-align: center;
 }
+
+.Toastify__toast {
+  min-height: 40px;
+  top: 20px;
+}

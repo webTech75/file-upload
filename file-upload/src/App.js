@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { Progress } from 'reactstrap';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class App extends Component {
 
@@ -16,12 +18,15 @@ export default class App extends Component {
     })
   }
 
-  onclickHandler = (e) => {
+  onClickHandler = (e) => {
     e.preventDefault();
     const data = new FormData();
     data.append('file', this.state.selectedFile)
 
     axios.post('http://localhost:8000/upload', data,{
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      },
       onUploadProgress: ProgressEvent => {
         this.setState({
           loaded: (ProgressEvent.loaded / ProgressEvent.total*100)
@@ -29,7 +34,10 @@ export default class App extends Component {
       }
     })
     .then(res => {
-      console.log('from react post call', res.statusText);
+      toast.success('upload success');
+    })
+    .catch(err => {
+      toast.error('upload fail');
     })
   }
 
@@ -38,14 +46,19 @@ export default class App extends Component {
       <div className='container'>
         <div className='row'>
           <div className='offset-md-3 col-md-6'>
-            <div className='form-group files'>
-              <label>Upload Your File</label>
-              <input type='file' name='file' className='form-control' onChange={this.onChangeHandler} />
-            </div>
-            <div className="form-group">
-              <Progress max="100" color="success" value={this.state.loaded} >{Math.round(this.state.loaded,2) }%</Progress>
-            </div>
-            <button type='button' className='btn btn-success btn-lg btn-block' onClick={this.onclickHandler}>Upload</button>
+            <form onSubmit={this.onClickHandler}>
+              <div className="form-group">
+                <ToastContainer position="top-center" />
+              </div>
+              <div className='form-group files'>
+                <label>Upload Your File</label>
+                <input type='file' name='file' className='form-control' onChange={this.onChangeHandler} />
+              </div>
+              <div className="form-group">
+                <Progress max="100" color="success" value={this.state.loaded} >{Math.round(this.state.loaded,2) }%</Progress>
+              </div>
+              <button className='btn btn-success btn-lg btn-block'>Upload</button>
+            </form>
           </div>
         </div>
       </div>
