@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Progress } from 'reactstrap';
 
 export default class App extends Component {
 
   state = {
-    selectedFile: null
+    selectedFile: null,
+    loaded: 0
   }
 
   onChangeHandler = e => {
@@ -19,7 +21,13 @@ export default class App extends Component {
     const data = new FormData();
     data.append('file', this.state.selectedFile)
 
-    axios.post('http://localhost:8000/upload', data)
+    axios.post('http://localhost:8000/upload', data,{
+      onUploadProgress: ProgressEvent => {
+        this.setState({
+          loaded: (ProgressEvent.loaded / ProgressEvent.total*100)
+        })
+      }
+    })
     .then(res => {
       console.log('from react post call', res.statusText);
     })
@@ -33,6 +41,9 @@ export default class App extends Component {
             <div className='form-group files'>
               <label>Upload Your File</label>
               <input type='file' name='file' className='form-control' onChange={this.onChangeHandler} />
+            </div>
+            <div className="form-group">
+              <Progress max="100" color="success" value={this.state.loaded} >{Math.round(this.state.loaded,2) }%</Progress>
             </div>
             <button type='button' className='btn btn-success btn-lg btn-block' onClick={this.onclickHandler}>Upload</button>
           </div>
