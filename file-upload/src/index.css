@@ -61,3 +61,238 @@ code {
   min-height: 40px;
   top: 20px;
 }
+
+
+
+
+
+/******************* spinner styles start********************************/
+.octogon {
+  margin: 50px auto;
+  width: 37px;
+  height: 37px;
+  position: relative;
+  -webkit-animation: spin 2s infinite ease-in-out;
+  -moz-animation: spin 2s infinite ease-in-out;
+  animation: spin 2s infinite ease-in-out;
+}
+.octo-sec {
+  box-sizing: border-box;
+  position: absolute;
+  -webkit-animation: rotate 1s infinite alternate ease-in;
+  -moz-animation: rotate 1s infinite alternate ease-in;
+  animation: rotate 1s infinite alternate ease-in;
+}
+.octo-sec:after {
+  content: "";
+  display: block;
+  position: absolute;
+  background: #00f;
+}
+.octo-sec.top {
+  width: 22px;
+  height: 10px;
+  border-right: 10px solid transparent;
+  border-bottom: 10px solid #00f;
+  right: 1px;
+}
+.octo-sec.top:after {
+  width: 2px;
+  height: 10px;
+  left: -2px;
+  border-top-left-radius: 2px;
+}
+.octo-sec.right {
+  width: 10px;
+  height: 22px;
+  border-left: 10px solid #00f;
+  border-bottom: 10px solid transparent;
+  right: 0;
+  bottom: 1px;
+}
+.octo-sec.right:after {
+  height: 2px;
+  width: 10px;
+  top: -2px;
+  right: 0;
+  border-top-right-radius: 2px;
+}
+.octo-sec.bottom {
+  width: 22px;
+  height: 10px;
+  border-top: 10px solid #00f;
+  border-left: 10px solid transparent;
+  bottom: 0;
+  left: 1px;
+}
+.octo-sec.bottom:after {
+  width: 2px;
+  height: 10px;
+  right: -2px;
+  bottom: 0;
+  border-bottom-right-radius: 2px;
+}
+.octo-sec.left {
+  width: 10px;
+  height: 22px;
+  border-top: 10px solid transparent;
+  border-right: 10px solid #00f;
+  left: 0;
+  top: 1px;
+}
+.octo-sec.left:after {
+  height: 2px;
+  width: 10px;
+  bottom: -2px;
+  border-bottom-left-radius: 2px;
+}
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0)
+  }
+
+  100% {
+    -webkit-transform: rotate(-45deg)
+  }
+}
+
+@-webkit-keyframes right-rotate {
+  0% {
+    -webkit-transform: rotate(90deg)
+  }
+
+  100% {
+    -webkit-transform: rotate(45deg)
+  }
+}
+
+@-webkit-keyframes bottom-rotate {
+  0% {
+    -webkit-transform: rotate(180deg)
+  }
+
+  100% {
+    -webkit-transform: rotate(135deg)
+  }
+}
+
+@-webkit-keyframes left-rotate {
+  0% {
+    -webkit-transform: rotate(-90deg)
+  }
+
+  100% {
+    -webkit-transform: rotate(-135deg)
+  }
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0) translate(0,0)
+  }
+
+  100% {
+    -webkit-transform: rotate(180deg) translate(0,0)
+  }
+}
+
+@-moz-keyframes rotate {
+  0% {
+    -moz-transform: rotate(0)
+  }
+
+  100% {
+    -moz-transform: rotate(-45deg)
+  }
+}
+
+@-moz-keyframes right-rotate {
+  0% {
+    -moz-transform: rotate(90deg)
+  }
+
+  100% {
+    -moz-transform: rotate(45deg)
+  }
+}
+
+@-moz-keyframes bottom-rotate {
+  0% {
+    -moz-transform: rotate(180deg)
+  }
+
+  100% {
+    -moz-transform: rotate(135deg)
+  }
+}
+
+@-moz-keyframes left-rotate {
+  0% {
+    -moz-transform: rotate(-90deg)
+  }
+
+  100% {
+    -moz-transform: rotate(-135deg)
+  }
+}
+
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0) translate(0,0)
+  }
+
+  100% {
+    -moz-transform: rotate(180deg) translate(0,0)
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(-45deg);
+  }
+}
+
+@keyframes right-rotate {
+  0% {
+    transform: rotate(90deg)
+  }
+
+  100% {
+    transform: rotate(45deg)
+  }
+}
+
+@keyframes bottom-rotate {
+  0% {
+    transform: rotate(180deg)
+  }
+
+  100% {
+    transform: rotate(135deg)
+  }
+}
+
+@keyframes left-rotate {
+  0% {
+    transform: rotate(-90deg)
+  }
+
+  100% {
+    transform: rotate(-135deg)
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0) translate(0, 0)
+  }
+
+  100% {
+    transform: rotate(180deg) translate(0, 0);
+  }
+}
+/*******************Octogon spinner styles end********************************/
